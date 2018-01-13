@@ -29,13 +29,13 @@ const updateScore = function() {
 const changeSnakeDirection = function(event) {
   switch (event.code) {
     case "KeyA":
-      snake.turnLeft();
+      game.turnLeft();
       break;
     case "KeyD":
-      snake.turnRight();
+      game.turnRight();
       break;
     case "KeyC":
-      snake.grow();
+      game.grow();
       break;
     default:
   }
@@ -54,19 +54,40 @@ const createSnake = function() {
   body.push(tail.next());
   let head = tail.next().next();
 
+<<<<<<< HEAD
   snake = new Snake(head, body);
+=======
+  snake=new Snake(head,body);
+  game.addSnake(snake);
+>>>>>>> 3d6f7120f183b34ce342d648b0c7ab98ba381e74
 }
 
 const createFood = function(numberOfRows, numberOfCols) {
   food = generateRandomPosition(numberOfCols, numberOfRows);
 }
 
+<<<<<<< HEAD
 const startGame = function() {
   createSnake();
   drawGrids(numberOfRows, numberOfCols);
   drawSnake(snake);
   createFood(numberOfRows, numberOfCols);
   drawFood(food);
+=======
+const createGame=function() {
+  let topLeft=new Position(0,0,"east");
+  let bottomRight=new Position(numberOfCols,numberOfRows,"east");
+  game=new Game(topLeft,bottomRight);
+}
+
+const startGame=function() {
+  createGame();
+  createSnake();
+  drawGrids(numberOfRows,numberOfCols);
+  drawSnake(game.getSnake());
+  game.createFood();
+  drawFood(game.getFood());
+>>>>>>> 3d6f7120f183b34ce342d648b0c7ab98ba381e74
   addKeyListener();
   animator = setInterval(animateSnake, 140);
 }
